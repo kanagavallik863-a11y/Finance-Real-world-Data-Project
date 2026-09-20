@@ -1,0 +1,36 @@
+=== DATASET OVERVIEW ===
+Date range: 2023-01-02 to 2025-12-31
+Rows: 783
+
+                             Date    Open    High     Low   Close      Volume
+count                         783  783.00  783.00  783.00  783.00      783.00
+mean   2024-07-01 14:26:12.413793   89.24   89.82   88.68   89.25   473738.88
+min           2023-01-02 00:00:00   63.92   64.53   63.83   64.13   142661.00
+25%           2023-10-02 12:00:00   77.28   77.76   76.84   77.35   342041.00
+50%           2024-07-02 00:00:00   87.73   88.20   87.54   87.99   431382.00
+75%           2025-04-01 12:00:00  101.80  102.30  101.14  101.76   573301.50
+max           2025-12-31 00:00:00  119.34  119.99  118.61  119.08  1836331.00
+std                           NaN   13.84   13.93   13.75   13.81   197810.46
+
+Rows available for modeling after feature engineering: 752
+
+=== NEXT-DAY CLOSING PRICE PREDICTION (Regression) ===
+Linear Regression: MAE=1.584, RMSE=1.956, R2=0.926
+Random Forest Regressor: MAE=2.125, RMSE=2.837, R2=0.844
+
+=== NEXT-DAY DIRECTION PREDICTION (Up/Down Classification) ===
+Logistic Regression: Accuracy=0.483
+Random Forest Classifier: Accuracy=0.450
+Baseline (always predict majority class) accuracy: 0.530
+
+=== KEY FINDINGS ===
+Total return over the period: -4.2%
+Average daily return: 0.011%
+Daily return volatility (std dev): 1.824%
+Max single-day gain: 6.19%
+Max single-day drop: -5.08%
+
+Best next-day price model: Linear Regression (lowest RMSE)
+Best direction model: Logistic Regression (Accuracy 0.483 vs baseline 0.530)
+
+Conclusion: Next-day closing price is highly predictable from recent price/volume history (R2 up to 0.93) because prices move incrementally day to day — tomorrow's close is close to today's close plus a small drift. Next-day DIRECTION (up vs down) is a different problem: both classifiers performed at or below the majority-class baseline, meaning they found no real edge in predicting which way the price would move. This is consistent with the efficient-market idea that short-term price direction behaves close to a random walk, even when the price level itself is easy to track.
